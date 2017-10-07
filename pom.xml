@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.yxlg</groupId>
+	<artifactId>yxlg</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<!-- 设定主仓库，按设定顺序进行查找。 -->
+	<repositories>
+		<!-- 如有Nexus私服, 如有私服须放置在前面,指向正确的服务器地址.-->
+		<repository>
+			<id>nexus-repos</id>
+			<name>Team Nexus Repository</name>
+			<url>http://nexus.dev.magicmanufactory.com:8081/nexus/content/groups/public/</url>
+			<layout>default</layout>
+		</repository> 
+	
+		<repository>
+			<id>aliyun-repos</id>
+			<name>aliyun Releases</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+	
+	<modules>
+		<module>base</module>
+		<module>member</module>
+  	</modules>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<org.springframework-version>4.2.5.RELEASE</org.springframework-version>
+		<org.springframework-security-version>3.2.7.RELEASE</org.springframework-security-version>
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<org.hibernate-version>4.3.7.Final</org.hibernate-version>
+		<commons-lang3.version>3.4</commons-lang3.version>
+		<commons-beanutils.version>1.9.2</commons-beanutils.version>
+
+		<!-- profile公共参数 -->
+		<!-- <jdbc.url>jdbc:mysql://localhost:3306/yxlg</jdbc.url> -->
+		<jdbc.url>jdbc:mysql://localhost:3306/test</jdbc.url>
+		<!-- <jdbc.username>EksnoEjX+DamA2/1IgFqog==</jdbc.username>
+		<jdbc.password>AD28v44Sg68QGZPderGA2g==</jdbc.password> -->
+		<jdbc.username>D3JDiWamMRQ=</jdbc.username>
+		<jdbc.password>2KrQFZXdrcWmA2/1IgFqog==</jdbc.password>
+		
+		<!-- 数据源2，只读 -->
+		<!-- <jdbc.urlRead>jdbc:mysql://localhost:3306/yxlg</jdbc.urlRead> -->
+		<jdbc.urlRead>jdbc:mysql://localhost:3306/test</jdbc.urlRead>
+		<!-- <jdbc.usernameRead>EksnoEjX+DamA2/1IgFqog==</jdbc.usernameRead>
+		<jdbc.passwordRead>AD28v44Sg68QGZPderGA2g==</jdbc.passwordRead> -->
+		<jdbc.usernameRead>D3JDiWamMRQ=</jdbc.usernameRead>
+		<jdbc.passwordRead>2KrQFZXdrcWmA2/1IgFqog==</jdbc.passwordRead>
+
+		<redis.host>redis.dev.magicmanufactory.com</redis.host>
+		<redis.port>6379</redis.port>
+		<redis.pass>Yuandian6789</redis.pass>
+
+		<acpsdk.signCert.path01>D:\\certs\\redcolor.pfx</acpsdk.signCert.path01>
+		<acpsdk.signCert.path02>D:\\certs\\redcolorpayagent.pfx</acpsdk.signCert.path02>
+		<acpsdk.encryptCert.path>D:\\certs\\RSA2048_PROD_index_22.cer</acpsdk.encryptCert.path>
+		<acpsdk.validateCert.dir>D:\\certs\\</acpsdk.validateCert.dir>
+		<weixin.refund.certs>D:\\certs\\apiclient_cert.p12</weixin.refund.certs>
+		<weixin.web.refund.certs>D:\\certs\\jsapi_apiclient_cert.p12</weixin.web.refund.certs>
+
+		<billcheck.dir>D:\\BillcheckFile</billcheck.dir>
+		<logback.rootPath>D:\\tmp\\logback\\</logback.rootPath>
+		<logback.additivity>false</logback.additivity>
+		<base.server.url>https://testserver1.magicmanufactory.com/</base.server.url>
+		<base.server.type>DEV_SERVER</base.server.type>
+		<factory.base.server.url>http://218.58.54.236:88/</factory.base.server.url>
+		<factory.base.xml.server.url>http://218.58.54.236:8080/</factory.base.xml.server.url>
+		<factory.siebel.xml.server.ip>http://219.146.80.197:9090/</factory.siebel.xml.server.ip>
+
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${org.springframework-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- spring security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${org.springframework-security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springframework-security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springframework-security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<!-- end spring security -->
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+
+		<!-- Test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>xmlunit</groupId>
+			<artifactId>xmlunit</artifactId>
+			<version>1.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>0.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<version>1.3</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${org.hibernate-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>${org.hibernate-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${org.hibernate-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.3.2.Final</version>
+		</dependency>
+
+		<!-- MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.34</version>
+		</dependency>
+
+		<!-- fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.1.37</version>
+		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-access</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<!-- http://mvnrepository.com/artifact/commons-codec/commons-codec -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.10</version>
+		</dependency>
+		<dependency>
+			<groupId>p6spy</groupId>
+			<artifactId>p6spy</artifactId>
+			<version>2.1.3</version>
+		</dependency>
+
+		<!-- @Inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>
+		</dependency>
+
+		<!-- commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+		<!-- commons-beanutils -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.4.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.4.3</version>
+		</dependency>
+
+		<!-- 通用校验 -->
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.ezmorph</groupId>
+			<artifactId>ezmorph</artifactId>
+			<version>1.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.3.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.unionpay</groupId>
+			<artifactId>bcprov-jdk16</artifactId>
+			<version>1.45</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>1.5.0.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.4.2</version>
+		</dependency>
+		<!-- Spring Session -->
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session</artifactId>
+			<version>1.0.2.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+			<version>2.2</version>
+		</dependency>
+
+		<!-- picture upload start -->
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.4.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.squareup.okio</groupId>
+			<artifactId>okio</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.squareup.okhttp</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.qiniu</groupId>
+			<artifactId>qiniu-java-sdk</artifactId>
+			<version>6.1.7.1</version>
+		</dependency>
+		<!-- picture upload end -->
+
+		<dependency>
+			<groupId>sun.misc</groupId>
+			<artifactId>BASE64Decoder</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.11</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.11</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>3.11</version>
+		</dependency>
+
+		<!-- jxls -->
+		<dependency>
+			<groupId>net.sf.jxls</groupId>
+			<artifactId>jxls-core</artifactId>
+			<version>0.9.9</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jxls</groupId>
+			<artifactId>jxls-reader</artifactId>
+			<version>0.9.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.janino</groupId>
+			<artifactId>janino</artifactId>
+			<version>2.7.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.yuandian.c2m.util</groupId>
+			<artifactId>ueditor-qiniu</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!-- jaxen -->
+		<!-- <dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+			<version>1.1.6</version>
+		</dependency> -->
+
+		<!-- new connection pool support to replace c3p0 -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>2.4.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.16</version>
+		</dependency>
+
+		<!-- freemarker -->
+		<!-- <dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.16</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.8</version>
+		</dependency> -->
+
+		<!-- swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.luaj</groupId>
+			<artifactId>luaj-jse</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		<!-- 拼音 -->
+		<!-- <dependency>
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>2.5.0</version>
+		</dependency> -->
+		<!-- http://mvnrepository.com/artifact/org.ansj/ansj_seg -->
+		<!-- <dependency>
+			<groupId>org.ansj</groupId>
+			<artifactId>ansj_seg</artifactId>
+			<version>3.7.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.nlpcn</groupId>
+			<artifactId>nlp-lang</artifactId>
+			<version>1.5</version>
+		</dependency> -->
+		<!-- activemq -->
+		<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-core -->
+		<!-- <dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-core</artifactId>
+			<version>5.7.0</version>
+		</dependency> -->
+		<!-- https://mvnrepository.com/artifact/org.apache.geronimo.specs/geronimo-j2ee-management_1.1_spec -->
+		<!-- <dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-j2ee-management_1.1_spec</artifactId>
+			<version>1.0.1</version>
+		</dependency> -->
+		<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-pool -->
+		<!-- <dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-pool</artifactId>
+			<version>5.13.4</version>
+		</dependency> -->
+		<!-- javax jms -->
+		<!-- <dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jms_1.1_spec</artifactId>
+			<version>1.1.1</version>
+		</dependency> -->
+		<!-- alipay sdk -->
+		<!-- <dependency>
+			<groupId>com.alipay.sdk</groupId>
+			<artifactId>alipay-sdk</artifactId>
+			<version>1.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.4</version>
+		</dependency> -->
+		<!-- jcaptcha -->
+		<!-- <dependency>
+			<groupId>com.github.bingoohuang</groupId>
+			<artifactId>patchca</artifactId>
+			<version>0.0.1</version>
+		</dependency> -->
+		
+	</dependencies>
+	<profiles>
+		<!-- 部署阿里云的用于开发的测试服务器 testserver1 -->
+		<profile>
+			<id>aliyun-testServer1-manage</id>
+			<properties>
+				<jdbc.url>jdbc:mysql://rdshkh4qmgbyshj7tj4r7.mysql.rds.aliyuncs.com:3306/c2mplatform_dev</jdbc.url>
+				<jdbc.username>8p8m8OjsPLU=</jdbc.username>
+				<jdbc.password>2KrQFZXdrcWmA2/1IgFqog==</jdbc.password>
+				<!-- 数据源2，只读 -->
+				<jdbc.urlRead>jdbc:mysql://rdshkh4qmgbyshj7tj4r7.mysql.rds.aliyuncs.com:3306/c2mplatform_dev</jdbc.urlRead>
+				<jdbc.usernameRead>8p8m8OjsPLU=</jdbc.usernameRead>
+				<jdbc.passwordRead>2KrQFZXdrcWmA2/1IgFqog==</jdbc.passwordRead>
+				
+				<redis.port>16379</redis.port>
+				<logback.rootPath>/opt/logs_manage/</logback.rootPath>
+				<acpsdk.signCert.path01>/opt/tomcat7/webapps/manage/WEB-INF/certs/redcolor.pfx</acpsdk.signCert.path01>
+				<acpsdk.signCert.path02>/opt/tomcat7/webapps/manage/WEB-INF/certs/redcolorpayagent.pfx</acpsdk.signCert.path02>
+				<acpsdk.encryptCert.path>/opt/tomcat7/webapps/manage/WEB-INF/certs/RSA2048_PROD_index_22.cer</acpsdk.encryptCert.path>
+				<acpsdk.validateCert.dir>/opt/tomcat7/webapps/manage/WEB-INF/certs/</acpsdk.validateCert.dir>
+			</properties>
+			<modules>
+				<module>manage</module>
+			</modules>
+		</profile>
+
+		<!-- 部署阿里云的用于定时任务的测试服务器 testserver1 -->
+		<profile>
+			<id>aliyun-testServer1-task</id>
+			<properties>
+				<jdbc.url>jdbc:mysql://rdshkh4qmgbyshj7tj4r7.mysql.rds.aliyuncs.com:3306/c2mplatform_dev</jdbc.url>
+				<jdbc.username>8p8m8OjsPLU=</jdbc.username>
+				<jdbc.password>2KrQFZXdrcWmA2/1IgFqog==</jdbc.password>
+				<!-- 数据源2，只读 -->
+				<jdbc.urlRead>jdbc:mysql://rdshkh4qmgbyshj7tj4r7.mysql.rds.aliyuncs.com:3306/c2mplatform_dev</jdbc.urlRead>
+				<jdbc.usernameRead>8p8m8OjsPLU=</jdbc.usernameRead>
+				<jdbc.passwordRead>2KrQFZXdrcWmA2/1IgFqog==</jdbc.passwordRead>
+				<redis.port>16379</redis.port>
+				<logback.rootPath>/opt/logs_task/</logback.rootPath>
+				<acpsdk.signCert.path01>/opt/tomcat7/webapps/task/WEB-INF/certs/redcolor.pfx</acpsdk.signCert.path01>
+				<acpsdk.signCert.path02>/opt/tomcat7/webapps/task/WEB-INF/certs/redcolorpayagent.pfx</acpsdk.signCert.path02>
+				<acpsdk.encryptCert.path>/opt/tomcat7/webapps/task/WEB-INF/certs/RSA2048_PROD_index_22.cer</acpsdk.encryptCert.path>
+				<acpsdk.validateCert.dir>/opt/tomcat7/webapps/task/WEB-INF/</acpsdk.validateCert.dir>
+			</properties>
+			<modules>
+				<module>task</module>
+			</modules>
+		</profile>
+
+		<!-- 部署阿里云的用于开发的webservice测试服务器testserver1 -->
+		<profile>
+			<id>aliyun-testServer1-webservice</id>
+			<properties>
+				<jdbc.url>jdbc:mysql://rdshkh4qmgbyshj7tj4r7.mysql.rds.aliyuncs.com:3306/c2mplatform_dev</jdbc.url>
+				<jdbc.username>8p8m8OjsPLU=</jdbc.username>
+				<jdbc.password>2KrQFZXdrcWmA2/1IgFqog==</jdbc.password>
+				<!-- 数据源2，只读 -->
+				<jdbc.urlRead>jdbc:mysql://rdshkh4qmgbyshj7tj4r7.mysql.rds.aliyuncs.com:3306/c2mplatform_dev</jdbc.urlRead>
+				<jdbc.usernameRead>8p8m8OjsPLU=</jdbc.usernameRead>
+				<jdbc.passwordRead>2KrQFZXdrcWmA2/1IgFqog==</jdbc.passwordRead>
+				<redis.port>16379</redis.port>
+				<logback.rootPath>/opt/logs_webservice/</logback.rootPath>
+				<acpsdk.signCert.path01>/opt/tomcat7/webapps/webservice/WEB-INF/certs/redcolor.pfx</acpsdk.signCert.path01>
+				<acpsdk.signCert.path02>/opt/tomcat7/webapps/webservice/WEB-INF/certs/redcolorpayagent.pfx</acpsdk.signCert.path02>
+				<acpsdk.encryptCert.path>/opt/tomcat7/webapps/webservice/WEB-INF/certs/RSA2048_PROD_index_22.cer</acpsdk.encryptCert.path>
+				<acpsdk.validateCert.dir>/opt/tomcat7/webapps/webservice/WEB-INF/certs/</acpsdk.validateCert.dir>
+			</properties>
+			<modules>
+				<module>webservice</module>
+			</modules>
+		</profile>
+	</profiles>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<additionalProjectnatures>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+					<additionalBuildcommands>
+						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+					</additionalBuildcommands>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<compilerArgument>-Xlint:all</compilerArgument>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<configuration>
+					<mainClass>org.test.int1.Main</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>${tomcat.url}</url>
+					<username>admin</username>
+					<password>admin</password>
+					<uriEncoding>UTF-8</uriEncoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<phase>test</phase>
+						<goals>
+							<goal>resources</goal>
+							<goal>testResources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+					<excludes>
+						<exclude>**/Abstract*.java</exclude>
+					</excludes>
+					<junitArtifactName>junit:junit</junitArtifactName>
+					<argLine>-Xmx512m</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.4</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<developers>
+		<developer>
+			<name>Dirk Sun</name>
+			<email>dirk.sun@centling.com</email>
+		</developer>
+		<developer>
+			<name>Marvin Ma</name>
+			<email>marvin.ma@centling.com</email>
+		</developer>
+		<developer>
+			<name>Jerry Qin</name>
+			<email>jerry.qin@centling.com</email>
+		</developer>
+	</developers>
+</project>

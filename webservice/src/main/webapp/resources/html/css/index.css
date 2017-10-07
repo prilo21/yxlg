@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 06/07/2015, 11:22:58 AM
+    Author     : jiahao
+*/
+
+body
+{
+    color: #585858; opacity:1.0f;
+}
+
+
+
+p {line-height:24px; font-family:STXihei; 
+   font-weight: normal;
+   letter-spacing: 0.1em;
+   font-size: 14px; line-height:24px;
+}
+
+h3 {
+    font-family: STXihei; line-height:24px; font-size: 14px;
+    letter-spacing: 0.1em;
+    color: #585858; opacity:1.0f; 
+}
+
+h4 {
+    font-family: STXihei; line-height:27px; 
+    letter-spacing: 0.15em;
+    color: #585858; opacity:1.0f; 
+    font-size: 14px;
+}
+
+div
+{
+    margin: 0 auto;     
+    width: auto;
+    text-align: center !important;
+}
+

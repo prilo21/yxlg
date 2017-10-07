@@ -1,0 +1,92 @@
+input,img{
+    margin:0px;
+    padding:0px;
+}
+#header{
+    margin:20px 0px 10px 0px;
+    text-align:center;
+}
+.level{
+    word-wrap:break-word; word-break:break-all;display:block;
+}
+.level h1{
+		color: rgb(0,0,0);
+		font-family: Georgia;
+		font-size: 1.0em;
+		letter-spacing: 0.1em;
+		text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
+	}
+.abstract-text{
+    text-indent: 30pt;
+    font-size:14px;
+}
+.mig-space {
+    margin:10px;
+}
+#inputs input
+{   width:215px;
+    background: #f1f1f1 url("public/images/icon-phone.png ") no-repeat;
+    padding: 10px 10px 10px 25px;
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    font-size:14px;
+}
+.inputs-code 
+{   
+    height:35px;
+    border:0px;
+    font-size:14px;
+}
+.code-wd{
+    width:38%;
+}
+.gcode{
+    font-family:"Microsoft YaHei";
+    text-decoration:underline;
+}
+#phoneNo{
+    width:78%;
+}
+
+
+.main-button{
+    width:115px;
+}
+#ecode-button{
+    margin-left:10px;
+    
+}
+#mainContent{
+    margin:30px 0px 30px 0px;
+    text-align:center;
+}
+.main-input{
+    width:78%;
+    margin:0 auto;
+    margin-top:3px;
+    background:#d0d0d0;
+    height:42px;
+    line-height:38px;
+}
+.button-text{
+    color:#ffffff
+}
+.input-icon-bg{
+    width:14%;
+    height:42px;
+    line-height:55px;
+    margin:0 1%;
+    background:#dedede;
+    float:left;
+}
+.bg-black{
+    background:#000000;
+}
+.bg-hui{
+    background:#d0d0d0;
+}

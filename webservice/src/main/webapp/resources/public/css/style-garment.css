@@ -1,0 +1,182 @@
+@charset "utf-8";
+/* CSS Document */
+
+html{font-size:62.5%;}
+* {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style: none;
+}
+.user_msg{
+	display: flex;
+	display:-webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    justify-content: space-around;
+    -webkit-justify-content: space-around;
+	background-color: #fafafa;
+    padding: 1.2rem 0rem;
+    border-bottom: 1px solid #eaeaea;
+	font-size:1.4rem;
+}
+.user_msg input{
+	border:none;
+	background-color:transparent;
+	border-bottom:1px solid #eee;
+}
+.user_name{width:35%;}
+.user_name input{
+	width:60%
+}
+.user_phone{width:55%}
+.user_phone input{
+	width:60%;	
+}
+.se_nav{ width:100%; overflow:hidden;margin-top:10px; border-bottom: 1px solid #c9c9c9;}
+.se_nav_ml{}
+.se_nav li{ float:left; width:50%; text-align:center; height:2.6rem; line-height:2.6rem; font-size:1.0rem; color:#8f8f8f;}
+.se_nav .se_nav_selected{border-bottom:2px solid #000;color:#000;width: 30%; margin: 0px 10%;}
+.se_select{ width:100%; display:none;}
+.se_select_view{display:inherit}
+.se_selectBox{ display: flex; display:-webkit-flex;-webkit-flex-direction: row;flex-direction: row; -webkit-justify-content: space-around;justify-content: space-around;border-bottom: 1px solid #e9e9e9;}
+.se_b_left{ width:55%;padding: 1.0rem 0.8rem;}
+.se_b_right{ width:30%;padding: 1.5rem 0.8rem;}
+.se_b_right span{display:block; text-align:center;}
+.se_select_row{ display: flex; flex-direction: row; justify-content: space-around;}
+.se_select_title{display:block; line-height:2.5rem;}
+.btn-select { 
+position: relative; 
+display: inline-block; 
+width: 11.5rem; 
+height: 2.5rem;
+border-bottom: 1px solid #f1f1f1;
+} 
+.btn-select .cur-select { 
+position: absolute; 
+display: block; 
+width: 11.5rem; 
+height: 2.5rem; 
+line-height: 2.5rem; 
+background: url(../images/btr-Down.png) no-repeat 9rem center; 
+background-size:1.5rem;
+text-indent: 1rem; 
+color:#919191;
+} 
+.btn-select:hover .cur-select { 
+background-color: #eee; 
+} 
+.btn-select select { 
+position: absolute; 
+top: 0; 
+left: 0; 
+width: 11.5rem; 
+height: 2.5rem; 
+opacity: 0; 
+filter: alpha(opacity: 0;);
+} 
+.btn-select select option { 
+text-indent: 1rem; 
+} 
+.btn-select select option:hover { 
+background-color: #eee; 
+color: #fff; 
+}
+.col_line{width: 1px; background-color: #eee;margin: 1.2rem 0px;} 
+.erwm{ width: 56%; margin-left: 22%;margin-top: 15%;}
+
+
+.cy_row{display: flex;display:-webkit-flex; flex-direction: row;-webkit-flex-direction:row; justify-content: center;-webkit-justify-content:center;padding: 0.5rem 0rem; }
+.cy_data_box{ width:60%;display: flex;display:-webkit-flex; flex-direction: row;-webkit-flex-direction:row; justify-content: space-around;-webkit-justify-content:space-around;border-bottom: 1px solid #eee; line-height: 2.5rem; font-size: 1.4rem}
+.cy_data_box input{width:60%; border:none;}
+.cy_row span{ display:block; line-height:2.2rem; font-size:1.4rem; padding: 0rem 0.5rem;}
+
+.lt_row{display: flex;display:-webkit-flex; flex-direction: row;-webkit-flex-direction:row; justify-content: center;-webkit-justify-content:center;padding: 0.5rem 0rem; }
+.lt_data_box{ width:70%;display: flex;display:-webkit-flex; flex-direction: row;-webkit-flex-direction:row; justify-content: space-around;-webkit-justify-content:space-around;border-bottom: 1px solid #eee;}
+.lt_data_box input{width:70%; border:none;}
+.lt_row span{ display:block; line-height:2.2rem; font-size:1.4rem; padding: 0rem 0.5rem;}
+
+.lt_data_box form{width:100%}
+.lt-select { 
+position: relative; 
+display: inline-block; 
+width: 100%; 
+height: 2.5rem;
+} 
+.lt-select .cur-select { 
+position: absolute; 
+display: block; 
+width: 100%; 
+height: 2.5rem; 
+line-height: 2.5rem; 
+background: url(../images/garment/btr-Down.png) no-repeat right center; 
+background-size:1.0rem;
+text-indent: 1rem; 
+color:#919191;
+padding: 0rem 1rem 0rem 0rem;
+text-align:center;
+} 
+.lt-select:hover .cur-select { 
+/*background-color: #eee;*/ 
+} 
+.lt-select select { 
+position: absolute; 
+top: 0; 
+left: 0; 
+width: 100%; 
+height: 2.5rem; 
+opacity: 0; 
+filter: alpha(opacity: 0;);
+} 
+.lt-select select option { 
+text-indent: 1rem; 
+} 
+.lt-select select option:hover { 
+background-color: #eee; 
+color: #fff; 
+}
+.size_btn{  width:100%;  position:fixed; bottom:0rem; left:0rem;display: flex;display:-webkit-flex; flex-direction: row;-webkit-flex-direction:row;height:2.6rem; line-height:2.6rem; font-size:1.5rem; text-align:center; border:1px solid #000;}
+.size_yl{width:50%;}
+.size_tj{width:50%; background-color:#000;color:#fff;}
+
+.no_border {
+	border-width: 0;
+}
+.btn-select .no-pin {
+	background: none;
+	width: 100%;
+	text-align: center;
+	padding: 0;
+}
+.pin {
+	background: url(../images/garment/btr-Down.png) no-repeat center;
+	background-size: 1.2rem;
+	color: transparent;
+}
+
+.lt_data_box a {
+	width: 100%;
+}
+.lt_data_box select {
+	width: 100%;
+}
+
+.confirm-btn {
+	width: 50%;
+	height: 3rem;
+	line-height: 3rem;
+	font-size: 3rem;
+	background-color: black;
+	color: white;
+	text-align: center;
+	margin: 2rem auto;
+}
+.circle_btn {
+	width:40px;
+	height:40px;
+	border:1px solid #000;
+	border-radius: 10px; 
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px; 
+}

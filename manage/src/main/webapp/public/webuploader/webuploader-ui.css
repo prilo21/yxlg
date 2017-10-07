@@ -1,0 +1,23 @@
+#uploader .queueList .item {
+    margin:8px 30px 0px 30px;
+    padding-bottom:5px;
+    border-bottom: dotted 1px #dddddd
+}
+
+#uploader .queueList .state-success{
+    color: #4cae4c;
+}
+
+#uploader .queueList .state-warn{
+    color: #ffcc66;
+}
+
+#uploader .queueList .state-error{
+    color: #f43838;
+}
+
+#uploader .queueList .state-progress{
+    color: #00b7ee;
+}
+
+

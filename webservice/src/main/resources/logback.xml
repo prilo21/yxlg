@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- WARN>INFO>DEBUG -->
+
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<Pattern>%d{HH:mm:ss.SSS} %-5level %logger{80} - %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<!-- 按照每天生成日志文件 -->
+	<appender name="ROLLINGFILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${logback.rootPath}basic-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="EXCEPTIONFILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${logback.rootPath}exception/exception-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="P6SPYFILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${logback.rootPath}p6spy/p6spy-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>888</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 订单相关日志 -->
+	<appender name="ORDERFILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${logback.rootPath}order/order-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 工厂相关日志 -->
+	<appender name="FACTORYFILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${logback.rootPath}factory/factory-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 银联相应日志 -->
+	<appender name="ACP_SDK_LOG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 过滤非银联的日志 -->
+		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+			<evaluator name="loggingTaskEval">
+				<expression>logger.contains("ACP_SDK_LOG")</expression>
+			</evaluator>
+			<OnMatch>ACCEPT</OnMatch>
+			<OnMismatch>DENY</OnMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${logback.rootPath}pay/ACP-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 支付宝相应日志 -->
+	<appender name="ALI_PAY_LOG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 过滤非阿里的日志 -->
+		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+			<evaluator name="loggingTaskEval">
+				<expression>logger.contains("ALI_PAY_LOG")</expression>
+			</evaluator>
+			<OnMatch>ACCEPT</OnMatch>
+			<OnMismatch>DENY</OnMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${logback.rootPath}pay/ALI-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+
+	<!-- 微信相应日志 -->
+	<appender name="WEIXIN_LOG"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 过滤非银联的日志 -->
+		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+			<evaluator name="loggingTaskEval">
+				<expression>logger.contains("WEIXIN_LOG")</expression>
+			</evaluator>
+			<OnMatch>ACCEPT</OnMatch>
+			<OnMismatch>DENY</OnMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${logback.rootPath}pay/WEIXIN-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+					class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 智齿聊天相关日志 -->
+	<appender name="ZHICHIFILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${logback.rootPath}zhichi/zhichi-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<logger additivity="${logback.additivity}" name="zhichi_log" level="INFO">
+		<appender-ref ref="ZHICHIFILE" />
+	</logger>
+	
+	<logger additivity="${logback.additivity}" name="com.yuandian" level="DEBUG">
+		<appender-ref ref="ROLLINGFILE" />
+	</logger>
+
+	<logger additivity="${logback.additivity}" name="ALI_PAY_LOG" level="INFO">
+		<appender-ref ref="ALI_PAY_LOG" />
+	</logger>
+
+	<logger additivity="${logback.additivity}" name="ACP_SDK_LOG" level="INFO">
+		<appender-ref ref="ACP_SDK_LOG" />
+	</logger>
+
+	<logger additivity="${logback.additivity}" name="WEIXIN_LOG" level="INFO">
+		<appender-ref ref="WEIXIN_LOG" />
+	</logger>
+
+	<logger additivity="${logback.additivity}" name="ExceptionLogger" level="WARN">
+		<appender-ref ref="EXCEPTIONFILE" />
+	</logger>
+
+	<logger additivity="${logback.additivity}" name="p6spyLogger" level="DEBUG">
+		<appender-ref ref="P6SPYFILE" />
+	</logger>
+	
+	<logger additivity="${logback.additivity}" name="orderLogger" level="DEBUG">
+		<appender-ref ref="ORDERFILE" />
+	</logger>
+
+	<logger additivity="${logback.additivity}" name="factoryLogger" level="INFO">
+		<appender-ref ref="FACTORYFILE" />
+	</logger>
+	
+	<logger name="net" level="ERROR" />
+	<logger name="org" level="ERROR" />
+
+	<logger name="com.p6spy" level="ERROR" />
+	<logger name="com.yuandian.*.dao" level="ERROR" />
+
+	<!-- 日志级别 -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ROLLINGFILE" />
+	</root>
+
+</configuration>
